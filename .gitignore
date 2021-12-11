@@ -1,0 +1,16 @@
+# files
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+
+# local only files
+variables.auto.tfvars
+
+# directory
+.terraform/
+terraform.tfstate.d/
+
+# for mac
+.DS_Store
+
