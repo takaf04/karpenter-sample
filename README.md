@@ -5,9 +5,9 @@
 2. Terraform で構築
 
    ```
-   terrafrom init
-   terrafrom plan
-   terrafrom apply
+   terraform init
+   terraform plan
+   terraform apply
    ```
 
 3. karpenter のデバッグログを有効にする
@@ -54,5 +54,5 @@
 9. EKS を削除する
 
    ```
-   terrafrom destroy
+   terraform destroy
    ```
