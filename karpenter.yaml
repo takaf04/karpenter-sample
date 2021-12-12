@@ -12,4 +12,8 @@ spec:
       cpu: 1000
   provider:
     instanceProfile: KarpenterNodeInstanceProfile-karpenter-sample
+  # Node 削除条件
   ttlSecondsAfterEmpty: 30
+  # Node label
+  labels:
+    billing-team: my-team
