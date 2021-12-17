@@ -56,14 +56,19 @@ module "eks" {
 
   enable_irsa = true
 
-  worker_groups = [
+  worker_groups_launch_template = [
     {
       name          = "node-group"
       instance_type = "t3a.medium"
       asg_max_size  = 1
     }
   ]
-
+/*
+  workers_additional_policies = [
+    # Karpenter Node
+    "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  ]
+*/
   write_kubeconfig = false
 }
 
@@ -85,7 +90,7 @@ provider "kubernetes" {
 }
 
 # ---------------------------------
-# Karpenter Node IAM Role
+# Karpenter Node IAM Role (ProvisionerのinstanceProfileで指定)
 # ---------------------------------
 data "aws_iam_policy" "ssm_managed_instance" {
   arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
@@ -163,7 +168,7 @@ resource "helm_release" "karpenter" {
   name       = "karpenter"
   repository = "https://charts.karpenter.sh"
   chart      = "karpenter"
-  version    = "0.5.1"
+  version    = "0.5.2"
 
   set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"

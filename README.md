@@ -19,7 +19,11 @@
 4. Provisioner を作成する
 
    ```
-   kubectl apply -f karpenter.yaml
+   kubectl apply -f provisioner/default_1_getting_started.yaml
+   ```
+
+   ```
+   kubectl apply -f provisioner/default_2_sample.yaml
    ```
 
    ```
@@ -35,7 +39,7 @@
 6. Deployment を作成する
 
    ```
-   kubectl apply -f depoloyment.yaml
+   kubectl apply -f depoloyment/sample.yaml
    ```
 
 7. Deployment をスケールさせる
@@ -46,10 +50,21 @@
 
 8. 環境を削除する
 
-   ```
-   kubectl delete -f depoloyment.yaml
-   kubectl delete -f karpenter.yaml
-   ```
+   1. Depoloyment
+
+      ```
+      kubectl delete -f depoloyment/sample.yaml
+      ```
+
+   2. Provisioner
+
+      ```
+      kubectl delete -f provisioner/default_1_getting_started.yaml
+      ```
+
+      ```
+      kubectl delete -f provisioner/default_2_sample.yaml
+      ```
 
 9. EKS を削除する
 
