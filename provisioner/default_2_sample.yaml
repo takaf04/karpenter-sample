@@ -6,11 +6,28 @@ spec:
   requirements:
     - key: karpenter.sh/capacity-type
       operator: In
-      values: ["on-demand"]
+      values: ['on-demand']
+    - key: 'node.kubernetes.io/instance-type'
+      operator: In
+      values:
+        [
+          't3a.nano',
+          't3a.micro',
+          't3a.small',
+          't3a.medium',
+          't3a.large',
+          't3a.xlarge',
+          't3a.2xlarge',
+        ]
   limits:
     resources:
-      cpu: 4
+      cpu: 20
+      memory: 100Gi
   provider:
     instanceProfile: KarpenterNodeInstanceProfile-karpenter-sample
-  # Node 削除条件
+    tags:
+      Name: 'KarpenterControlNode'
+  # Node 空になった後に何秒後に削除するか？
   ttlSecondsAfterEmpty: 30
+  # Node 有効期限、自動終了される
+  ttlSecondsUntilExpired: 600
